@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import pages.AmazonPage;
@@ -19,13 +20,12 @@ public class AmazonStepDefinitions {
     }
 
     @Given("iPhone icin arama yapar")
-    public void i_phone_icin_arama_yapar() {
-
+    public void i_Phone_icin_arama_yapar() {
         amazonPage.searchBox.sendKeys("iPhone" + Keys.ENTER);
     }
 
-    @Then("sonuclarin Iphone icerdigini test eder")
-    public void sonuclarin_iphone_icerdigini_test_eder() {
+    @Then("sonuclarin iPhone icerdigini test eder")
+    public void sonuclarin_iPhone_icerdigini_test_eder() {
         Assert.assertTrue(amazonPage.sonucYazisiElementi.getText().contains("iPhone"));
 
     }
@@ -54,6 +54,24 @@ public class AmazonStepDefinitions {
 
     @Then("sayfayi kapatir")
     public void sayfayiKapatir() {
+
         Driver.closeDriver();
+    }
+
+    @When("{string} icin arama yapar")
+    public void icin_arama_yapar(String arananKelime) {
+        amazonPage.searchBox.sendKeys(arananKelime  + Keys.ENTER);
+    }
+
+
+    @Then("sonuclarin {string} icerdigini test eder")
+    public void sonuclarin_icerdigini_test_eder(String arananKelime) {
+Assert.assertTrue(amazonPage.sonucYazisiElementi.getText().contains(arananKelime));
+    }
+
+    //boylece kullanici URL giridiginde bu metod ortak calisacak
+    @Given("kullanici {string} sayfasina gider")
+    public void kullaniciSayfasinaGider(String sayfaUrl) {
+        Driver.getDriver().get(ConfigReader.getProperty(sayfaUrl));
     }
 }
