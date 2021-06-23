@@ -9,7 +9,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
         //6. rapor almak icin
-        plugin={"html:target\\cucumber-raporlar.html"},
+        plugin={"html:target\\cucumber-raporlar.html",
+                "json:target/json-reports/cucumber.json",
+                "junit:target/xml-report/cucumber.xml"},
         //plugin={"html:target\\cucumber-reports.html"},
 
         //1.
@@ -28,7 +30,7 @@ import org.junit.runner.RunWith;
 
         //4
 //        tags="@ali or miniregression",
-        tags="@koalaResortNegatifLogin",
+        tags="@amazonMehmet",
         //tags="@istediginiz tag", TEstNG de gordugumuz group gibi calisir
         //tags="@smoke or miniregression" => boyle yapabiliriz. Or dersek veya
         // work in progress hangi feature veya senaryoyu calistiracagini bilmesi icin onemli
@@ -46,7 +48,6 @@ import org.junit.runner.RunWith;
                         )
 
 public class Runner {
-
 
 
 }
